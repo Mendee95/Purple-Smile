@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-label="Purple Smile">
+  <defs>
+    <linearGradient id="markFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B5FE8"></stop>
+      <stop offset="100%" stop-color="#3D2A8C"></stop>
+    </linearGradient>
+  </defs>
+  
+  <rect x="4" y="6" width="36" height="36" rx="9" fill="url(#markFill)"></rect>
+  <path d="M14 26 q8 9 16 0" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"></path>
+  <path d="M30 13 l1.2 2.4 l2.4 1.2 l-2.4 1.2 l-1.2 2.4 l-1.2 -2.4 l-2.4 -1.2 l2.4 -1.2 z" fill="#ffffff"></path>
+  
+  <text x="50" y="32" font-family="Manrope, system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.02em">
+    <tspan fill="#3D2A8C">Purple</tspan><tspan fill="#6B4EE6"> Smile</tspan>
+  </text>
+</svg>

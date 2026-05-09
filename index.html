@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purple Smile — Илүү зоригтой инээмсэглэ.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Shader Background Canvas ── -->
+  <canvas id="shader-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-10;pointer-events:none;"></canvas>
+
+  <!-- ── Навигаци ── -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="#" class="nav__logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-label="Purple Smile" height="38">
+            <defs>
+              <linearGradient id="nFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7B5FE8"/>
+                <stop offset="100%" stop-color="#3D2A8C"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="6" width="36" height="36" rx="9" fill="url(#nFill)"/>
+            <path d="M14 26 q8 9 16 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M30 13 l1.2 2.4 l2.4 1.2 l-2.4 1.2 l-1.2 2.4 l-1.2-2.4 l-2.4-1.2 l2.4-1.2z" fill="#fff"/>
+            <text x="50" y="32" font-family="Manrope,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-0.02em">
+              <tspan fill="#3D2A8C">Purple</tspan><tspan fill="#6B4EE6"> Smile</tspan>
+            </text>
+          </svg>
+        </a>
+        <ul class="nav__links">
+          <li><a href="#products">Дэлгүүр</a></li>
+          <li><a href="#how-it-works">Хэрхэн ажилладаг</a></li>
+          <li><a href="#reviews">Сэтгэгдэл</a></li>
+          <li><a href="#faq">Асуулт</a></li>
+        </ul>
+        <a href="#products" class="btn btn--primary nav__cta">Одоо авах</a>
+        <button class="nav__hamburger" id="hamburger" aria-label="Цэс нээх">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <ul>
+      <li><a href="#products">Дэлгүүр</a></li>
+      <li><a href="#how-it-works">Хэрхэн ажилладаг</a></li>
+      <li><a href="#reviews">Сэтгэгдэл</a></li>
+      <li><a href="#faq">Асуулт</a></li>
+    </ul>
+    <a href="#products" class="btn btn--primary">Одоо авах</a>
+  </div>
+
+  <!-- ── Баннер ── -->
+  <section class="hero">
+    <div class="hero__bg"></div>
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <span class="eyebrow eyebrow--light">Мэргэжлийн цайруулга. Эмнэлэг хэрэггүй.</span>
+          <h1 class="hero__headline">Илүү цэвэр, илүү итгэлтэй инээмсэглэл.</h1>
+          <p class="hero__sub">7 хоног. Мэдэгдэхүйц цайруулна. Өвдөлтгүй. Хоосон амлалтгүй.</p>
+          <div class="hero__actions">
+            <a href="#products" class="btn btn--white btn--lg">Багц сонгох</a>
+            <a href="#how-it-works" class="btn btn--ghost-white btn--lg">Хэрхэн ажилладагийг үзэх</a>
+          </div>
+          <div class="hero__proof">
+            <div class="stars">★★★★☆</div>
+            <span>376 үнэлгээ</span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__glow"></div>
+          <div class="pkg pkg--hero">
+            <div class="pkg__shine"></div>
+            <div class="pkg__brand">PURPLE SMILE</div>
+            <div class="pkg__spark">✦</div>
+            <div class="pkg__name">PRO KIT</div>
+            <div class="pkg__sub">14 Судал</div>
+            <div class="pkg__tag">PAP+ Томъёо</div>
+          </div>
+          <div class="float-badge float-badge--mint">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#5BD3B5"/><path d="M4 8l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Эмалийг хамгаалдаг
+          </div>
+          <div class="float-badge float-badge--blush">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#FF6FB5"/><path d="M8 3v5l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+            7 хоногт үр дүн
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Итгэлийн зурвас ── -->
+  <section class="trust">
+    <div class="container">
+      <div class="trust__inner">
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#5BD3B5" fill-opacity=".2"/><path d="M6 10l3 3 5-5" stroke="#5BD3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>7 хоногт үр дүн</span>
+        </div>
+        <div class="trust__divider"></div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#5BD3B5" fill-opacity=".2"/><path d="M6 10l3 3 5-5" stroke="#5BD3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Эмалийг хамгаалдаг томъёо</span>
+        </div>
+        <div class="trust__divider"></div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#5BD3B5" fill-opacity=".2"/><path d="M6 10l3 3 5-5" stroke="#5BD3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>100,000+ инээмсэглэл</span>
+        </div>
+        <div class="trust__divider"></div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#5BD3B5" fill-opacity=".2"/><path d="M6 10l3 3 5-5" stroke="#5BD3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Өвдөлтгүй</span>
+        </div>
+        <div class="trust__divider"></div>
+        <div class="trust__item">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#5BD3B5" fill-opacity=".2"/><path d="M6 10l3 3 5-5" stroke="#5BD3B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>30 хоногийн баталгаа</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Бүтээгдэхүүн ── -->
+  <section id="products" class="products">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Багцаа сонго</span>
+        <h2 class="section-title">Танд яг тохирохыг ол.</h2>
+        <p class="section-sub">Бүх багц PAP+ томъёог ашигладаг. Перекс агуулдаггүй. Өвдөлтгүй. Зөвхөн үр дүн.</p>
+      </div>
+      <div class="products__grid">
+
+        <!-- Эхлэгч багц -->
+        <article class="pcard">
+          <div class="pcard__label">Эхлэгч</div>
+          <div class="pcard__visual pcard__visual--starter">
+            <div class="pkg pkg--card">
+              <div class="pkg__shine"></div>
+              <div class="pkg__brand">PURPLE SMILE</div>
+              <div class="pkg__spark">✦</div>
+              <div class="pkg__name">STARTER</div>
+              <div class="pkg__sub">7 Судал</div>
+            </div>
+          </div>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Эхлэгч багц</h3>
+            <p class="pcard__desc">Анхны хэрэглээнд зориулсан энгийн сонголт.</p>
+            <ul class="pcard__features">
+              <li>7 цайруулах судал</li>
+              <li>7 хоногийн эмчилгээний төлөвлөгөө</li>
+              <li>PAP+ томъёо</li>
+              <li>Эмалийг хамгаалдаг</li>
+            </ul>
+            <div class="pcard__price">
+              <span class="price">₮29,900</span>
+            </div>
+            <button class="btn btn--primary btn--full buy-btn"
+              data-product="Эхлэгч багц" data-price="29,900">Авах</button>
+          </div>
+        </article>
+
+        <!-- Про багц -->
+        <article class="pcard pcard--featured">
+          <div class="pcard__label pcard__label--pop">Хамгийн их сонгогддог</div>
+          <div class="pcard__visual pcard__visual--pro">
+            <div class="pkg pkg--card pkg--card-pro">
+              <div class="pkg__shine"></div>
+              <div class="pkg__brand">PURPLE SMILE</div>
+              <div class="pkg__spark">✦</div>
+              <div class="pkg__name">PRO</div>
+              <div class="pkg__sub">14 Судал</div>
+            </div>
+          </div>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Про багц</h3>
+            <p class="pcard__desc">Хамгийн өндөр үр дүн. Гэртээ 14 хоногийн мэргэжлийн түвшний цайруулга.</p>
+            <ul class="pcard__features">
+              <li>14 цайруулах судал</li>
+              <li>14 хоногийн эмчилгээний төлөвлөгөө</li>
+              <li>PAP+ Дэвшилтэт томъёо</li>
+              <li>3–5 зэрэг цайрна</li>
+            </ul>
+            <div class="pcard__price">
+              <span class="price">₮49,900</span>
+            </div>
+            <button class="btn btn--primary btn--full buy-btn"
+              data-product="Про багц" data-price="49,900">Авах</button>
+          </div>
+        </article>
+
+        <!-- Тэргүүн багц -->
+        <article class="pcard">
+          <div class="pcard__label pcard__label--value">Хамгийн ашигтай</div>
+          <div class="pcard__visual pcard__visual--ultimate">
+            <div class="pkg pkg--card">
+              <div class="pkg__shine"></div>
+              <div class="pkg__brand">PURPLE SMILE</div>
+              <div class="pkg__spark">✦</div>
+              <div class="pkg__name">ULTIMATE</div>
+              <div class="pkg__sub">28 Судал + Серум</div>
+            </div>
+          </div>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Тэргүүн багц</h3>
+            <p class="pcard__desc">Бүрэн туршлага. 28 судал + реминерализацийн серум. Урт эдэлгээтэй гялбаа.</p>
+            <ul class="pcard__features">
+              <li>28 цайруулах судал</li>
+              <li>Реминерализацийн серум</li>
+              <li>PAP+ Про томъёо</li>
+              <li>8 хүртэл зэрэг цайрна</li>
+            </ul>
+            <div class="pcard__price">
+              <span class="price-old">₮109,900</span>
+              <span class="price">₮89,900</span>
+              <span class="price-save">₮20,000 хэмнэнэ</span>
+            </div>
+            <button class="btn btn--primary btn--full buy-btn"
+              data-product="Тэргүүн багц" data-price="89,900">Авах</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Хэрхэн ажилладаг ── -->
+  <section id="how-it-works" class="hiw">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Эмнэлэг хэрэггүй. Цаг захиалга хэрэггүй.<br>Зөвхөн үр дүн.</h2>
+      </div>
+      <div class="hiw__steps">
+        <div class="hiw__step">
+          <div class="step-num">01</div>
+          <div class="step-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="12" fill="#4B0082" fill-opacity=".1"/>
+              <path d="M12 24c3-5 13-5 16 0" stroke="#4B0082" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="14" y="14" width="12" height="6" rx="3" fill="#4B0082" fill-opacity=".3"/>
+              <path d="M28 12l1 2 2 1-2 1-1 2-1-2-2-1 2-1z" fill="#8A2BE2"/>
+            </svg>
+          </div>
+          <h3>Хальсыг хуулж шүдэндээ нааж хийнэ.</h3>
+          <p>Ердөө 30 секунд.</p>
+        </div>
+        <div class="hiw__connector">
+          <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="40" y2="1" stroke="#EDEAF5" stroke-width="2" stroke-dasharray="4 4"/></svg>
+        </div>
+        <div class="hiw__step">
+          <div class="step-num">02</div>
+          <div class="step-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="12" fill="#4B0082" fill-opacity=".1"/>
+              <circle cx="20" cy="20" r="9" stroke="#4B0082" stroke-width="2.5"/>
+              <path d="M20 14v6l4 3" stroke="#4B0082" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>30 минут хүлээнэ.</h3>
+          <p>30 минутын туршид хүссэн зүйлээ хийгээрэй.</p>
+        </div>
+        <div class="hiw__connector">
+          <svg width="40" height="2" viewBox="0 0 40 2"><line x1="0" y1="1" x2="40" y2="1" stroke="#EDEAF5" stroke-width="2" stroke-dasharray="4 4"/></svg>
+        </div>
+        <div class="hiw__step">
+          <div class="step-num">03</div>
+          <div class="step-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="12" fill="#4B0082" fill-opacity=".1"/>
+              <path d="M12 22c3-4 13-4 16 0" stroke="#4B0082" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M26 14l1.2 2.4 2.4 1.2-2.4 1.2-1.2 2.4-1.2-2.4-2.4-1.2 2.4-1.2z" fill="#FF6FB5"/>
+              <path d="M14 13l.8 1.6 1.6.8-1.6.8-.8 1.6-.8-1.6-1.6-.8 1.6-.8z" fill="#B57EDC"/>
+            </svg>
+          </div>
+          <h3>Хуулж аваад зайлна.</h3>
+          <p>Үр дүнгээ хараарай.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Сэтгэгдэл ── -->
+  <section id="reviews" class="reviews">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Жинхэнэ инээмсэглэл. Жинхэнэ үр дүн.</span>
+        <h2 class="section-title">376 үнэлгээ.</h2>
+      </div>
+      <div class="reviews__grid">
+
+        <div class="rcard">
+          <div class="rcard__stars">★★★★☆</div>
+          <p class="rcard__text">«Би эхэндээ эргэлзэж байсан ч 4 дэх өдрөөс найзууд маань юу хийснийг асуух болсон. Миний инээмсэглэл хэзээ ч ингэж гэрэлтэж байгаагүй.»</p>
+          <div class="rcard__author">
+            <div class="rcard__avatar" style="background:#B57EDC">Б</div>
+            <div>
+              <div class="rcard__name">Баярцэцэг Д.</div>
+              <div class="rcard__kit">Про багц · 14 хоног</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rcard rcard--featured">
+          <div class="rcard__stars">★★★★☆</div>
+          <p class="rcard__text">«Огт өвдөлтгүй! Шүд маань маш мэдрэмтгий тул айж байсан ч бүрэн өвдөлтгүй байлаа. Хоёр дахь багцаа захиалчихлаа.»</p>
+          <div class="rcard__author">
+            <div class="rcard__avatar" style="background:#FF6FB5">С</div>
+            <div>
+              <div class="rcard__name">Солонго А.</div>
+              <div class="rcard__kit">Эхлэгч багц · Анхны хэрэглэгч</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rcard">
+          <div class="rcard__stars">★★★★☆</div>
+          <p class="rcard__text">«Мөнгөнд үнэ цэнэтэй. Шүдний эмч дээр илүү их зарцуулаад бага үр дүн гарч байсан. Тэргүүн багц үнэхээр ашигтай.»</p>
+          <div class="rcard__author">
+            <div class="rcard__avatar" style="background:#5BD3B5">Ц</div>
+            <div>
+              <div class="rcard__name">Цэрэнпунцаг Н.</div>
+              <div class="rcard__kit">Тэргүүн багц · Дахин захиалагч</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Асуулт & Хариулт ── -->
+  <section id="faq" class="faq">
+    <div class="container faq__inner">
+      <div class="section-head section-head--left">
+        <span class="eyebrow">Асуулт байна уу?</span>
+        <h2 class="section-title">Хүмүүсийн асуудаг зүйлүүд.</h2>
+      </div>
+      <div class="faq__list">
+
+        <div class="faq__item">
+          <button class="faq__q">Шүдний эмалд хортой юу?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a">
+            <p>Үгүй. Манай PAP+ томъёо перекс агуулдаггүй тул эмалийг огт элэгдүүлдэггүй. Ихэнх цайруулах шүдний оо-ноос ч зөөлөн бөгөөд хамгийн мэдрэмтгий шүдэнд ч туршсан.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q">Хэзээ үр дүн гарах вэ?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a">
+            <p>Ихэнх хүмүүс 3 дахь өдрөөс ялгааг мэдэрдэг. Бүрэн үр дүн Эхлэгч багцаар 7 хоног, Про багцаар 14 хоногт гарна. Тэргүүн багц реминерализацийн серумтайгаар 8 хүртэл зэрэг цайрна.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q">QPay төлбөр хэрхэн ажилладаг вэ?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a">
+            <p>«Авах» товчийг дарахад нэн даруй QR код гарна. Монголын аль ч банкны апп-аар скан хийнэ — Хаан банк, Голомт, TDB, Хас банк болон 14 гаруй банк дэмжинэ. Төлбөр нэн даруй баталгаажиж, мөн өдөр нь хүргэнэ.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q">Мөнгийг буцаан авах боломжтой юу?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a">
+            <p>30 хоног. Асуултгүй. Зааврын дагуу ашиглаад үр дүн гараагүй бол бүтэн мөнгийг буцаана. Бид томъёодоо итгэдэг.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__q">Үр дүн хэр удаан хадгалагдах вэ?
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__a">
+            <p>Ердийн амьдралын хэвшлийн дагуу 3–6 сар. Кофе, цай ихтэй уудаг хүн бол сард нэг 2–3 судлаар дэмжинэ. Таны инээмсэглэл, таны хурд.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Баннер ── -->
+  <section class="cta-banner">
+    <div class="cta-banner__bg"></div>
+    <div class="container">
+      <h2 class="cta-banner__title">Илүү зоригтой инээмсэглэ.</h2>
+      <p class="cta-banner__sub">Инээмсэглэлээ нуухаа больсон 100,000+ хүнтэй нэгд.</p>
+      <a href="#products" class="btn btn--white btn--lg">Багц сонгох</a>
+    </div>
+  </section>
+
+  <!-- ── Хөл хэсэг ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-label="Purple Smile" height="36">
+            <defs>
+              <linearGradient id="fFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#B57EDC"/>
+                <stop offset="100%" stop-color="#8A2BE2"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="6" width="36" height="36" rx="9" fill="url(#fFill)"/>
+            <path d="M14 26 q8 9 16 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M30 13 l1.2 2.4 l2.4 1.2 l-2.4 1.2 l-1.2 2.4 l-1.2-2.4 l-2.4-1.2 l2.4-1.2z" fill="#fff"/>
+            <text x="50" y="32" font-family="Manrope,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-0.02em">
+              <tspan fill="#fff">Purple</tspan><tspan fill="#B57EDC"> Smile</tspan>
+            </text>
+          </svg>
+          <p>Мэргэжлийн цайруулга,<br>таны хаалганд хүргэнэ.</p>
+          <div class="footer__payment-row">
+            <span>Аюулгүй төлбөр:</span>
+            <div class="qpay-pill">
+              <span class="qpay-pill__q">Q</span>
+              <span>QPay</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h4>Дэлгүүр</h4>
+            <ul>
+              <li><a href="#products">Эхлэгч багц</a></li>
+              <li><a href="#products">Про багц</a></li>
+              <li><a href="#products">Тэргүүн багц</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Тусламж</h4>
+            <ul>
+              <li><a href="#faq">Асуулт & Хариулт</a></li>
+              <li><a href="#">Хүргэлтийн мэдээлэл</a></li>
+              <li><a href="#">Буцаалт</a></li>
+              <li><a href="#">Холбоо барих</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Бидний тухай</h4>
+            <ul>
+              <li><a href="#">Бидний түүх</a></li>
+              <li><a href="#">Найрлага</a></li>
+              <li><a href="#">Блог</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Purple Smile. Бүх эрх хуулиар хамгаалагдсан.</p>
+        <div class="footer__legal">
+          <a href="#">Нууцлал</a>
+          <a href="#">Нөхцөл</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── QPay Modal ── -->
+  <div class="overlay" id="overlay">
+    <div class="modal" id="qpay-modal" role="dialog" aria-modal="true" aria-label="QPay төлбөр">
+      <button class="modal__close" id="modal-close" aria-label="Хаах">✕</button>
+
+      <div class="modal__header">
+        <div class="qpay-logo-mark">
+          <div class="qpay-logo-mark__bg">
+            <span>Q</span>
+          </div>
+          <div>
+            <div class="qpay-logo-mark__name">QPay</div>
+            <div class="qpay-logo-mark__sub">Аюулгүй төлбөр</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal__order">
+        <div class="modal__order-product">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="36" height="36">
+            <defs>
+              <linearGradient id="mFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7B5FE8"/>
+                <stop offset="100%" stop-color="#3D2A8C"/>
+              </linearGradient>
+            </defs>
+            <rect width="40" height="40" rx="10" fill="url(#mFill)"/>
+            <path d="M10 24 q10 11 20 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M28 12l1.2 2.4 2.4 1.2-2.4 1.2-1.2 2.4-1.2-2.4-2.4-1.2 2.4-1.2z" fill="#fff"/>
+          </svg>
+          <div>
+            <div class="modal__order-name" id="modal-product-name">Про багц</div>
+            <div class="modal__order-brand">Purple Smile</div>
+          </div>
+        </div>
+        <div class="modal__order-amount" id="modal-price">₮49,900</div>
+      </div>
+
+      <div class="modal__qr-wrap">
+        <div class="modal__qr-inner" id="qr-area">
+          <svg viewBox="0 0 210 210" xmlns="http://www.w3.org/2000/svg" class="qr-svg" aria-label="QPay QR Код">
+            <!-- Finder: top-left -->
+            <rect x="10" y="10" width="56" height="56" rx="4" fill="#1A1A2E"/>
+            <rect x="18" y="18" width="40" height="40" rx="2" fill="white"/>
+            <rect x="26" y="26" width="24" height="24" rx="2" fill="#1A1A2E"/>
+            <!-- Finder: top-right -->
+            <rect x="144" y="10" width="56" height="56" rx="4" fill="#1A1A2E"/>
+            <rect x="152" y="18" width="40" height="40" rx="2" fill="white"/>
+            <rect x="160" y="26" width="24" height="24" rx="2" fill="#1A1A2E"/>
+            <!-- Finder: bottom-left -->
+            <rect x="10" y="144" width="56" height="56" rx="4" fill="#1A1A2E"/>
+            <rect x="18" y="152" width="40" height="40" rx="2" fill="white"/>
+            <rect x="26" y="160" width="24" height="24" rx="2" fill="#1A1A2E"/>
+            <!-- Center logo -->
+            <rect x="87" y="87" width="36" height="36" rx="8" fill="white"/>
+            <rect x="91" y="91" width="28" height="28" rx="6" fill="#4B0082"/>
+            <text x="105" y="111" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="white">Q</text>
+            <!-- Data modules -->
+            <rect x="76" y="10" width="8" height="8" fill="#1A1A2E"/><rect x="92" y="10" width="8" height="8" fill="#1A1A2E"/><rect x="108" y="10" width="16" height="8" fill="#1A1A2E"/><rect x="132" y="10" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="26" width="8" height="8" fill="#1A1A2E"/><rect x="92" y="26" width="16" height="8" fill="#1A1A2E"/><rect x="116" y="26" width="8" height="8" fill="#1A1A2E"/><rect x="132" y="26" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="42" width="16" height="8" fill="#1A1A2E"/><rect x="100" y="42" width="8" height="8" fill="#1A1A2E"/><rect x="116" y="42" width="16" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="58" width="8" height="8" fill="#1A1A2E"/><rect x="92" y="58" width="8" height="8" fill="#1A1A2E"/><rect x="116" y="58" width="8" height="8" fill="#1A1A2E"/><rect x="132" y="58" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="74" width="16" height="8" fill="#1A1A2E"/><rect x="100" y="74" width="8" height="8" fill="#1A1A2E"/><rect x="124" y="74" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="10" y="76" width="8" height="8" fill="#1A1A2E"/><rect x="26" y="76" width="16" height="8" fill="#1A1A2E"/><rect x="50" y="76" width="8" height="8" fill="#1A1A2E"/><rect x="66" y="76" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="10" y="92" width="16" height="8" fill="#1A1A2E"/><rect x="42" y="92" width="8" height="8" fill="#1A1A2E"/><rect x="58" y="92" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="10" y="108" width="8" height="8" fill="#1A1A2E"/><rect x="26" y="108" width="8" height="8" fill="#1A1A2E"/><rect x="42" y="108" width="16" height="8" fill="#1A1A2E"/><rect x="66" y="108" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="10" y="124" width="16" height="8" fill="#1A1A2E"/><rect x="34" y="124" width="8" height="8" fill="#1A1A2E"/><rect x="58" y="124" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="10" y="132" width="8" height="8" fill="#1A1A2E"/><rect x="26" y="132" width="16" height="8" fill="#1A1A2E"/><rect x="50" y="132" width="8" height="8" fill="#1A1A2E"/><rect x="66" y="132" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="76" width="8" height="8" fill="#1A1A2E"/><rect x="160" y="76" width="16" height="8" fill="#1A1A2E"/><rect x="184" y="76" width="16" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="92" width="16" height="8" fill="#1A1A2E"/><rect x="168" y="92" width="8" height="8" fill="#1A1A2E"/><rect x="192" y="92" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="108" width="8" height="8" fill="#1A1A2E"/><rect x="160" y="108" width="8" height="8" fill="#1A1A2E"/><rect x="176" y="108" width="16" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="124" width="16" height="8" fill="#1A1A2E"/><rect x="168" y="124" width="8" height="8" fill="#1A1A2E"/><rect x="184" y="124" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="132" width="8" height="8" fill="#1A1A2E"/><rect x="160" y="132" width="16" height="8" fill="#1A1A2E"/><rect x="192" y="132" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="144" width="8" height="8" fill="#1A1A2E"/><rect x="92" y="144" width="8" height="8" fill="#1A1A2E"/><rect x="108" y="144" width="16" height="8" fill="#1A1A2E"/><rect x="132" y="144" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="160" width="16" height="8" fill="#1A1A2E"/><rect x="100" y="160" width="8" height="8" fill="#1A1A2E"/><rect x="124" y="160" width="16" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="176" width="8" height="8" fill="#1A1A2E"/><rect x="92" y="176" width="16" height="8" fill="#1A1A2E"/><rect x="116" y="176" width="8" height="8" fill="#1A1A2E"/><rect x="132" y="176" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="76" y="192" width="16" height="8" fill="#1A1A2E"/><rect x="100" y="192" width="8" height="8" fill="#1A1A2E"/><rect x="124" y="192" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="152" width="8" height="8" fill="#1A1A2E"/><rect x="160" y="152" width="8" height="8" fill="#1A1A2E"/><rect x="176" y="152" width="16" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="168" width="16" height="8" fill="#1A1A2E"/><rect x="168" y="168" width="8" height="8" fill="#1A1A2E"/><rect x="184" y="168" width="8" height="8" fill="#1A1A2E"/>
+            <rect x="144" y="184" width="8" height="8" fill="#1A1A2E"/><rect x="160" y="184" width="16" height="8" fill="#1A1A2E"/><rect x="192" y="184" width="8" height="8" fill="#1A1A2E"/>
+          </svg>
+        </div>
+        <div class="modal__qr-timer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#8A2BE2" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="#8A2BE2" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Хугацаа дуусна: <span id="qr-timer">15:00</span>
+        </div>
+      </div>
+
+      <p class="modal__bank-note">Бүх Монгол банкны апп-аар төлөх боломжтой<br>(Хаан, Голомт, TDB, Хас болон бусад)</p>
+
+      <button class="btn btn--primary btn--full" id="pay-done-btn">Төлбөр хийлээ</button>
+      <p class="modal__help">Асуудал гарсан уу? <a href="#">Дэмжлэгтэй холбоо барих</a></p>
+    </div>
+  </div>
+
+  <!-- ── Амжилтын дэлгэц ── -->
+  <div class="overlay overlay--success" id="success-overlay">
+    <div class="modal modal--success">
+      <div class="success-check">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="24" fill="#5BD3B5" fill-opacity=".15"/>
+          <circle cx="24" cy="24" r="18" fill="#5BD3B5"/>
+          <path d="M16 24l6 6 10-12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="success-title">Төлбөр хүлээн авлаа.</h2>
+      <p class="success-body">Таны <strong id="success-product-name">Про багц</strong> замдаа явж байна. Удахгүй утасны дугаарт хүргэлтийн мэдээлэл илгээнэ.</p>
+      <p class="success-tag">Илүү зоригтой инээмсэглэ. 💜</p>
+      <button class="btn btn--primary btn--full" id="success-close">Боллоо</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('shader-bg');
+      const gl = canvas.getContext('webgl');
+      if (!gl) return;
+
+      const vsSource = `
+        attribute vec4 aVertexPosition;
+        void main() {
+          gl_Position = aVertexPosition;
+        }
+      `;
+
+      const fsSource = `
+        precision highp float;
+        uniform vec2 iResolution;
+        uniform float iTime;
+
+        const float overallSpeed = 0.2;
+        const float gridSmoothWidth = 0.015;
+        const float axisWidth = 0.05;
+        const float majorLineWidth = 0.025;
+        const float minorLineWidth = 0.0125;
+        const float majorLineFrequency = 5.0;
+        const float minorLineFrequency = 1.0;
+        const vec4 gridColor = vec4(0.5);
+        const float scale = 5.0;
+        const vec4 lineColor = vec4(0.4, 0.2, 0.8, 1.0);
+        const float minLineWidth = 0.01;
+        const float maxLineWidth = 0.2;
+        const float lineSpeed = 1.0 * overallSpeed;
+        const float lineAmplitude = 1.0;
+        const float lineFrequency = 0.2;
+        const float warpSpeed = 0.2 * overallSpeed;
+        const float warpFrequency = 0.5;
+        const float warpAmplitude = 1.0;
+        const float offsetFrequency = 0.5;
+        const float offsetSpeed = 1.33 * overallSpeed;
+        const float minOffsetSpread = 0.6;
+        const float maxOffsetSpread = 2.0;
+        const int linesPerGroup = 16;
+
+        #define drawCircle(pos, radius, coord) smoothstep(radius + gridSmoothWidth, radius, length(coord - (pos)))
+        #define drawSmoothLine(pos, halfWidth, t) smoothstep(halfWidth, 0.0, abs(pos - (t)))
+        #define drawCrispLine(pos, halfWidth, t) smoothstep(halfWidth + gridSmoothWidth, halfWidth, abs(pos - (t)))
+        #define drawPeriodicLine(freq, width, t) drawCrispLine(freq / 2.0, width, abs(mod(t, freq) - (freq) / 2.0))
+
+        float drawGridLines(float axis) {
+          return drawCrispLine(0.0, axisWidth, axis)
+                + drawPeriodicLine(majorLineFrequency, majorLineWidth, axis)
+                + drawPeriodicLine(minorLineFrequency, minorLineWidth, axis);
+        }
+
+        float drawGrid(vec2 space) {
+          return min(1.0, drawGridLines(space.x) + drawGridLines(space.y));
+        }
+
+        float random(float t) {
+          return (cos(t) + cos(t * 1.3 + 1.3) + cos(t * 1.4 + 1.4)) / 3.0;
+        }
+
+        float getPlasmaY(float x, float horizontalFade, float offset) {
+          return random(x * lineFrequency + iTime * lineSpeed) * horizontalFade * lineAmplitude + offset;
+        }
+
+        void main() {
+          vec2 fragCoord = gl_FragCoord.xy;
+          vec4 fragColor;
+          vec2 uv = fragCoord.xy / iResolution.xy;
+          vec2 space = (fragCoord - iResolution.xy / 2.0) / iResolution.x * 2.0 * scale;
+
+          float horizontalFade = 1.0 - (cos(uv.x * 6.28) * 0.5 + 0.5);
+          float verticalFade = 1.0 - (cos(uv.y * 6.28) * 0.5 + 0.5);
+
+          space.y += random(space.x * warpFrequency + iTime * warpSpeed) * warpAmplitude * (0.5 + horizontalFade);
+          space.x += random(space.y * warpFrequency + iTime * warpSpeed + 2.0) * warpAmplitude * horizontalFade;
+
+          vec4 lines = vec4(0.0);
+          vec4 bgColor1 = vec4(0.1, 0.1, 0.3, 1.0);
+          vec4 bgColor2 = vec4(0.3, 0.1, 0.5, 1.0);
+
+          for(int l = 0; l < linesPerGroup; l++) {
+            float normalizedLineIndex = float(l) / float(linesPerGroup);
+            float offsetTime = iTime * offsetSpeed;
+            float offsetPosition = float(l) + space.x * offsetFrequency;
+            float rand = random(offsetPosition + offsetTime) * 0.5 + 0.5;
+            float halfWidth = mix(minLineWidth, maxLineWidth, rand * horizontalFade) / 2.0;
+            float offset = random(offsetPosition + offsetTime * (1.0 + normalizedLineIndex)) * mix(minOffsetSpread, maxOffsetSpread, horizontalFade);
+            float linePosition = getPlasmaY(space.x, horizontalFade, offset);
+            float line = drawSmoothLine(linePosition, halfWidth, space.y) / 2.0 + drawCrispLine(linePosition, halfWidth * 0.15, space.y);
+
+            float circleX = mod(float(l) + iTime * lineSpeed, 25.0) - 12.0;
+            vec2 circlePosition = vec2(circleX, getPlasmaY(circleX, horizontalFade, offset));
+            float circle = drawCircle(circlePosition, 0.01, space) * 4.0;
+
+            line = line + circle;
+            lines += line * lineColor * rand;
+          }
+
+          fragColor = mix(bgColor1, bgColor2, uv.x);
+          fragColor *= verticalFade;
+          fragColor.a = 1.0;
+          fragColor += lines;
+
+          gl_FragColor = fragColor;
+        }
+      `;
+
+      function loadShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+          console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+          gl.deleteShader(shader);
+          return null;
+        }
+        return shader;
+      }
+
+      const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
+      const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
+      const program = gl.createProgram();
+      gl.attachShader(program, vertexShader);
+      gl.attachShader(program, fragmentShader);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error('Shader link error:', gl.getProgramInfoLog(program));
+        return;
+      }
+
+      const positionBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+      const vertexPosition = gl.getAttribLocation(program, 'aVertexPosition');
+      const uResolution = gl.getUniformLocation(program, 'iResolution');
+      const uTime = gl.getUniformLocation(program, 'iTime');
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const startTime = Date.now();
+      function render() {
+        const t = (Date.now() - startTime) / 1000;
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.useProgram(program);
+        gl.uniform2f(uResolution, canvas.width, canvas.height);
+        gl.uniform1f(uTime, t);
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.vertexAttribPointer(vertexPosition, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(vertexPosition);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>
