@@ -30,7 +30,7 @@ export default function LandingPage() {
   const products = [
     {
       id: 'starter', name: 'Эхлэгч багц', strips: '7 Судал',
-      photo: '/photos/product.jpg',
+      photo: '/photos/product-main.png',
       desc: 'Анхны хэрэглээнд зориулсан энгийн сонголт.',
       features: ['1 багц — 7 цайруулах судал', '7 хоногийн эмчилгээний төлөвлөгөө', 'PAP+ томъёо', 'Үнэгүй хүргэлт'],
       price: '₮45,000', featured: false, badge: null,
@@ -44,10 +44,10 @@ export default function LandingPage() {
     },
     {
       id: 'ultimate', name: 'Тэргүүн багц', strips: '21 Судал',
-      photo: '/photos/product.jpg',
+      photo: '/photos/product-triple.png',
       desc: 'Бүрэн туршлага. 3 багц. Урт эдэлгээтэй гялбаа.',
       features: ['3 багц — 21 цайруулах судал', '21 хоногийн эмчилгээний төлөвлөгөө', 'PAP+ Про томъёо', 'Үнэгүй хүргэлт'],
-      price: '₮150,000', featured: false, badge: 'Хамгийн ашигтай',
+      price: '₮120,000', featured: false, badge: 'Хамгийн ашигтай',
     },
   ];
 
@@ -61,7 +61,7 @@ export default function LandingPage() {
     {
       stars: '★★★★☆', initial: 'Б', color: '#B57EDC', featured: false,
       name: 'Баярцэцэг Д.', kit: 'Про багц · 14 хоног',
-      text: '«Би эхэндээ эргэлзэж байсан ч 4 дэх өдрөөс найзууд маань юу хийснийг асуух болсон. Миний инээмсэглэл хэзээ ч ингэж гэрэлтэж байгаагүй.»',
+      text: '«Bi ehdnee ergelzeej baisancch 4 deh udrees naizuud maani yuu hiisniig asuuh bolson. Minii ineemseglel hezee ch ingej gerelteej baisangui.»',
     },
     {
       stars: '★★★★★', initial: 'С', color: '#FF6FB5', featured: true,
@@ -71,15 +71,15 @@ export default function LandingPage() {
     {
       stars: '★★★★☆', initial: 'Ц', color: '#5BD3B5', featured: false,
       name: 'Цэрэнпунцаг Н.', kit: 'Тэргүүн багц · Дахин захиалагч',
-      text: '«Мөнгөнд үнэ цэнэтэй. Шүдний эмч дээр илүү их зарцуулаад бага үр дүн гарч байсан. Тэргүүн багц үнэхээр ашигтай.»',
+      text: '«Mungunud une tsenei. Shudnii emch deer iluu ih zartsulad baga ur dun garch baissan. Terguun bagts uneheer ashigtai.»',
     },
   ];
 
   const faqs = [
-    { q: 'Шүдний эмалд хортой юу?', a: 'Үгүй. Манай PAP+ томъёо перекс агуулдаггүй тул эмалийг огт элэгдүүлдэггүй. Ихэнх цайруулах шүдний оо-ноос ч зөөлөн бөгөөд хамгийн мэдрэмтгий шүдэнд ч туршсан.' },
-    { q: 'Хэзээ үр дүн гарах вэ?', a: 'Ихэнх хүмүүс 3 дахь өдрөөс ялгааг мэдэрдэг. Бүрэн үр дүн Эхлэгч багцаар 7 хоног, Про багцаар 14 хоногт гарна. Тэргүүн багц реминерализацийн серумтайгаар 8 хүртэл зэрэг цайрна.' },
-    { q: 'Мөнгийг буцаан авах боломжтой юу?', a: '30 хоног. Асуултгүй. Зааврын дагуу ашиглаад үр дүн гараагүй бол бүтэн мөнгийг буцаана. Бид томъёодоо итгэдэг.' },
+    { q: 'Шүдний паалангд хортой юу?', a: 'Үгүй. Манай PAP+ томъёо перекс агуулдаггүй тул паалангийг огт элэгдүүлдэггүй. Ихэнх цайруулах шүдний оо-ноос ч зөөлөн бөгөөд хамгийн мэдрэмтгий шүдэнд ч туршсан.' },
+    { q: 'Хэзээ үр дүн гарах вэ?', a: 'Ихэнх хүмүүс 3 дахь өдрөөс ялгааг мэдэрдэг. Бүрэн үр дүн Эхлэгч багцаар 7 хоног, Про багцаар 14 хоногт гарна. Тэргүүн багц 21 хоногт 8 хүртэл зэрэг цайрна.' },
     { q: 'Үр дүн хэр удаан хадгалагдах вэ?', a: 'Ердийн амьдралын хэвшлийн дагуу 3–6 сар. Кофе, цай ихтэй уудаг хүн бол сард нэг 2–3 судлаар дэмжинэ.' },
+    { q: 'Хаана захиалж болох вэ?', a: 'Шууд энэ хуудаснаас "Авах" товчийг дарж захиалах боломжтой. Мөн өдөр нь хүргэнэ.' },
   ];
 
   const navLinks = [
@@ -197,14 +197,14 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Real product photo */}
+            {/* Main product photo — hero */}
             <div className="hidden md:flex justify-center">
               <div className="relative">
-                <div className="w-[300px] rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(75,0,130,.65)] border border-white/15">
+                <div className="w-[300px] flex items-center justify-center">
                   <img
-                    src="/photos/product.jpg"
+                    src="/photos/product-main.png"
                     alt="Purple Smile цайруулах судал"
-                    className="w-full h-full object-cover"
+                    className="w-full object-contain drop-shadow-[0_32px_64px_rgba(75,0,130,.7)]"
                   />
                 </div>
 
@@ -215,7 +215,7 @@ export default function LandingPage() {
                       <path d="M2 5l2 2 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="text-white text-[11px] font-semibold">Эмалийг хамгаалдаг</span>
+                  <span className="text-white text-[11px] font-semibold">Паалангийг хамгаалдаг</span>
                 </div>
 
                 {/* Floating badge 2 */}
@@ -235,7 +235,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap justify-center gap-5 md:gap-10">
             {[
               '✓  7 хоногт үр дүн',
-              '✓  Эмалийг хамгаалдаг томъёо',
+              '✓  Паалангийг хамгаалдаг томъёо',
               '✓  100,000+ инээмсэглэл',
               '✓  Өвдөлтгүй',
               '✓  30 хоногийн баталгаа',
@@ -313,40 +313,13 @@ export default function LandingPage() {
                   </div>
                 )}
 
-                {/* Image area — triple fan for ultimate, single for others */}
-                <div className="w-full pt-10 px-6 pb-5 flex items-center justify-center"
-                  style={{ minHeight: '200px' }}>
-                  {p.id === 'ultimate' ? (
-                    <div className="relative flex items-end justify-center w-full" style={{ height: '176px' }}>
-                      {/* Left box */}
-                      <img
-                        src={p.photo}
-                        alt={p.name}
-                        className="absolute object-contain drop-shadow-lg"
-                        style={{ width: '52%', maxHeight: '148px', left: '2%', bottom: 0, transform: 'rotate(-10deg)', transformOrigin: 'bottom center', opacity: 0.85 }}
-                      />
-                      {/* Center box — front and tallest */}
-                      <img
-                        src={p.photo}
-                        alt={p.name}
-                        className="relative object-contain drop-shadow-2xl z-10"
-                        style={{ width: '54%', maxHeight: '176px', bottom: 0 }}
-                      />
-                      {/* Right box */}
-                      <img
-                        src={p.photo}
-                        alt={p.name}
-                        className="absolute object-contain drop-shadow-lg"
-                        style={{ width: '52%', maxHeight: '148px', right: '2%', bottom: 0, transform: 'rotate(10deg)', transformOrigin: 'bottom center', opacity: 0.85 }}
-                      />
-                    </div>
-                  ) : (
-                    <img
-                      src={p.photo}
-                      alt={p.name}
-                      className="w-full max-h-44 object-contain drop-shadow-xl"
-                    />
-                  )}
+                {/* Product image */}
+                <div className="w-full px-6 pt-10 pb-5 flex items-center justify-center" style={{ minHeight: '210px' }}>
+                  <img
+                    src={p.photo}
+                    alt={p.name}
+                    className="w-full max-h-48 object-contain drop-shadow-xl"
+                  />
                 </div>
 
                 {/* Divider */}
@@ -447,7 +420,7 @@ export default function LandingPage() {
                 {[
                   { icon: '🦷', title: 'PAP+ Цайруулалт', sub: 'Перекс агуулдаггүй, өвдөлтгүй' },
                   { icon: '✦', title: 'Өнгийг засах', sub: 'Шаргал өнгийг тэсгэнэ' },
-                  { icon: '🛡', title: 'Эмалийг хамгаалдаг', sub: 'Hydroxyapatite агуулдаг' },
+                  { icon: '🛡', title: 'Паалангийг хамгаалдаг', sub: 'Hydroxyapatite агуулдаг' },
                   { icon: '⚡', title: '30 минут', sub: 'Хурдан, хялбар хэрэглээ' },
                 ].map(f => (
                   <div key={f.title} className="rounded-xl p-4 bg-white/5 border border-white/10">
@@ -525,8 +498,9 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">
-              Эмнэлэг хэрэггүй.<br className="hidden sm:block" />
-              Цаг захиалга хэрэггүй. Зөвхөн үр дүн.
+              Эмнэлэг хэрэггүй.<br />
+              Цаг захиалах хэрэггүй.<br />
+              Адил үр дүнг гэрээсээ.
             </h2>
           </div>
           <div className="grid md:grid-cols-3 gap-10 relative">
