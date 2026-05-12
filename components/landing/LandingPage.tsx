@@ -12,18 +12,19 @@ interface Product {
 export default function LandingPage() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [modal, setModal] = useState<Product | null>(null);
-  const [success, setSuccess] = useState(false);
+  const [step, setStep] = useState<'order' | 'payment' | 'success'>('order');
+  const [orderInfo, setOrderInfo] = useState({ name: '', phone: '', address: '', doorCode: '' });
   const [timer, setTimer] = useState(900);
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!modal || success) return;
+    if (!modal || step !== 'payment') return;
     const id = setInterval(() => setTimer(t => (t > 0 ? t - 1 : 0)), 1000);
     return () => clearInterval(id);
-  }, [modal, success]);
+  }, [modal, step]);
 
-  const openModal = (p: Product) => { setModal(p); setSuccess(false); setTimer(900); };
-  const closeModal = () => { setModal(null); setSuccess(false); };
+  const openModal = (p: Product) => { setModal(p); setStep('order'); setTimer(900); setOrderInfo({ name: '', phone: '', address: '', doorCode: '' }); };
+  const closeModal = () => { setModal(null); };
   const fmt = (s: number) =>
     `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
@@ -680,9 +681,80 @@ export default function LandingPage() {
           onClick={e => e.target === e.currentTarget && closeModal()}
         >
           <div className="w-full max-w-[360px] bg-[#0c0c18] border border-white/12 rounded-2xl overflow-hidden shadow-2xl">
-            {!success ? (
+
+            {/* ── STEP 1: Order form ── */}
+            {step === 'order' && (
               <>
-                {/* Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+                  <div>
+                    <p className="text-white font-bold text-sm">Захиалгын мэдээлэл</p>
+                    <p className="text-white/35 text-[11px]">{modal.name} · {modal.price}</p>
+                  </div>
+                  <button onClick={closeModal} className="text-white/35 hover:text-white transition-colors text-xl leading-none">✕</button>
+                </div>
+
+                <div className="px-6 py-5 flex flex-col gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/55 text-[11px] font-semibold uppercase tracking-wider">Нэр</label>
+                    <input
+                      type="text"
+                      placeholder="Таны нэр"
+                      value={orderInfo.name}
+                      onChange={e => setOrderInfo(o => ({ ...o, name: e.target.value }))}
+                      className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white text-sm placeholder-white/25 focus:outline-none focus:border-[#8A2BE2] transition-colors"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/55 text-[11px] font-semibold uppercase tracking-wider">Утасны дугаар</label>
+                    <input
+                      type="tel"
+                      placeholder="9999 9999"
+                      value={orderInfo.phone}
+                      onChange={e => setOrderInfo(o => ({ ...o, phone: e.target.value }))}
+                      className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white text-sm placeholder-white/25 focus:outline-none focus:border-[#8A2BE2] transition-colors"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/55 text-[11px] font-semibold uppercase tracking-wider">Хүргэлтийн хаяг</label>
+                    <textarea
+                      placeholder="Дүүрэг, хороо, байр, орц, тоот..."
+                      value={orderInfo.address}
+                      onChange={e => setOrderInfo(o => ({ ...o, address: e.target.value }))}
+                      rows={3}
+                      className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white text-sm placeholder-white/25 focus:outline-none focus:border-[#8A2BE2] transition-colors resize-none"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-white/55 text-[11px] font-semibold uppercase tracking-wider">Орцны код <span className="text-white/25 normal-case font-normal">(заавал биш)</span></label>
+                    <input
+                      type="text"
+                      placeholder="жш: 1234"
+                      value={orderInfo.doorCode}
+                      onChange={e => setOrderInfo(o => ({ ...o, doorCode: e.target.value }))}
+                      className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white text-sm placeholder-white/25 focus:outline-none focus:border-[#8A2BE2] transition-colors"
+                    />
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      if (!orderInfo.name.trim() || !orderInfo.phone.trim() || !orderInfo.address.trim()) return;
+                      setStep('payment');
+                    }}
+                    disabled={!orderInfo.name.trim() || !orderInfo.phone.trim() || !orderInfo.address.trim()}
+                    className="w-full py-3.5 rounded-xl bg-[#8A2BE2] text-white font-bold text-sm hover:bg-[#7320cc] transition-colors shadow-[0_4px_20px_rgba(138,43,226,.4)] disabled:opacity-40 disabled:cursor-not-allowed mt-1"
+                  >
+                    Төлбөр рүү үргэлжлэх →
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* ── STEP 2: QPay ── */}
+            {step === 'payment' && (
+              <>
                 <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
                   <div className="flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-xl bg-[#4B0082] flex items-center justify-center shadow-[0_0_16px_rgba(75,0,130,.5)]">
@@ -696,14 +768,13 @@ export default function LandingPage() {
                   <button onClick={closeModal} className="text-white/35 hover:text-white transition-colors text-xl leading-none">✕</button>
                 </div>
 
-                {/* Order info */}
                 <div className="flex items-center justify-between px-6 py-3.5 bg-white/4 border-b border-white/8">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-[10px] font-black"
                       style={{ background: 'linear-gradient(135deg, #7B5FE8, #3D2A8C)' }}>PS</div>
                     <div>
                       <p className="text-white text-sm font-semibold">{modal.name}</p>
-                      <p className="text-white/35 text-xs">Purple Smile</p>
+                      <p className="text-white/35 text-xs">{orderInfo.name} · {orderInfo.phone}</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -711,7 +782,6 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                {/* QR */}
                 <div className="px-6 py-6 flex flex-col items-center gap-4">
                   <div className="w-48 h-48 bg-white rounded-2xl p-3 shadow-[0_0_40px_rgba(138,43,226,.2)]">
                     <svg viewBox="0 0 210 210" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -767,14 +837,17 @@ export default function LandingPage() {
 
                 <div className="px-6 pb-6">
                   <button
-                    onClick={() => setSuccess(true)}
+                    onClick={() => setStep('success')}
                     className="w-full py-3.5 rounded-xl bg-[#8A2BE2] text-white font-bold text-sm hover:bg-[#7320cc] transition-colors shadow-[0_4px_20px_rgba(138,43,226,.4)]"
                   >
                     Төлбөр хийлээ
                   </button>
                 </div>
               </>
-            ) : (
+            )}
+
+            {/* ── STEP 3: Success ── */}
+            {step === 'success' && (
               <div className="px-8 py-12 flex flex-col items-center text-center gap-5">
                 <div className="w-20 h-20 rounded-full bg-[#5BD3B5]/12 flex items-center justify-center">
                   <div className="w-14 h-14 rounded-full bg-[#5BD3B5] flex items-center justify-center shadow-[0_0_24px_rgba(91,211,181,.4)]">
@@ -786,7 +859,7 @@ export default function LandingPage() {
                 <h3 className="text-xl font-black text-white">Төлбөр хүлээн авлаа.</h3>
                 <p className="text-white/55 text-sm leading-relaxed">
                   Таны <span className="text-white font-semibold">{modal.name}</span> замдаа явж байна.<br />
-                  Удахгүй утасны дугаарт хүргэлтийн мэдээлэл илгээнэ.
+                  <span className="text-white/40">{orderInfo.address}</span> хаягт хүргэнэ.
                 </p>
                 <p className="text-[#B57EDC] text-sm font-semibold">Илүү зоригтой инээмсэглэ. 💜</p>
                 <button
@@ -797,6 +870,7 @@ export default function LandingPage() {
                 </button>
               </div>
             )}
+
           </div>
         </div>
       )}
