@@ -837,7 +837,14 @@ export default function LandingPage() {
 
                 <div className="px-6 pb-6">
                   <button
-                    onClick={() => setStep('success')}
+                    onClick={async () => {
+                      await fetch('/api/order', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ ...orderInfo, product: modal.name, price: modal.price }),
+                      }).catch(() => {});
+                      setStep('success');
+                    }}
                     className="w-full py-3.5 rounded-xl bg-[#8A2BE2] text-white font-bold text-sm hover:bg-[#7320cc] transition-colors shadow-[0_4px_20px_rgba(138,43,226,.4)]"
                   >
                     Төлбөр хийлээ
