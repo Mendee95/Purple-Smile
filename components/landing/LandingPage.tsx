@@ -39,23 +39,13 @@ export default function LandingPage() {
     { n: '03', title: 'Хуулж аваад зайлна.', sub: 'Үр дүнгээ хараарай.' },
   ];
 
-  const reviews = [
-    {
-      stars: '★★★★☆', initial: 'Б', color: '#B57EDC', featured: false,
-      name: 'Баярцэцэг Д.', kit: 'Про багц · 14 хоног',
-      text: '«Bi ehdnee ergelzeej baisancch 4 deh udrees naizuud maani yuu hiisniig asuuh bolson. Minii ineemseglel hezee ch ingej gerelteej baisangui.»',
-    },
-    {
-      stars: '★★★★★', initial: 'С', color: '#FF6FB5', featured: true,
-      name: 'Солонго А.', kit: 'Эхлэгч багц · Анхны хэрэглэгч',
-      text: '«Огт өвдөлтгүй! Шүд маань маш мэдрэмтгий тул айж байсан ч бүрэн өвдөлтгүй байлаа. Хоёр дахь багцаа захиалчихлаа.»',
-    },
-    {
-      stars: '★★★★☆', initial: 'Ц', color: '#5BD3B5', featured: false,
-      name: 'Цэрэнпунцаг Н.', kit: 'Тэргүүн багц · Дахин захиалагч',
-      text: '«Mungunud une tsenei. Shudnii emch deer iluu ih zartsulad baga ur dun garch baissan. Terguun bagts uneheer ashigtai.»',
-    },
-  ];
+  // Жинхэнэ хэрэглэгчийн сэтгэгдлийг энд нэмнэ — хуурамч сэтгэгдэл бүү бич.
+  // Анхны хэрэглэгчдээсээ (эгчээсээ эхэл) бодит сэтгэгдэл аваад дараах бүтцэд оруул:
+  // { stars: '★★★★★', initial: 'Н', color: '#B57EDC', featured: false, name: 'Нэр Х.', kit: 'Про багц', text: '«...»' }
+  const reviews: {
+    stars: string; initial: string; color: string; featured: boolean;
+    name: string; kit: string; text: string;
+  }[] = [];
 
   const faqs = [
     { q: 'Шүдний паалангд хортой юу?', a: 'Үгүй. Манай PAP+ томъёо перекс агуулдаггүй тул паалангийг огт элэгдүүлдэггүй. Ихэнх цайруулах шүдний оо-ноос ч зөөлөн бөгөөд хамгийн мэдрэмтгий шүдэнд ч туршсан.' },
@@ -174,8 +164,8 @@ export default function LandingPage() {
                 </a>
               </div>
               <div className="flex items-center gap-2 text-sm">
-                <span className="text-yellow-400 text-base">★★★★☆</span>
-                <span className="text-white/45">376 үнэлгээ</span>
+                <span className="text-[#5BD3B5] text-base">✓</span>
+                <span className="text-white/45">30 хоногийн мөнгө буцаах баталгаа</span>
               </div>
             </div>
 
@@ -218,7 +208,7 @@ export default function LandingPage() {
             {[
               '✓  7 хоногт үр дүн',
               '✓  Паалангийг хамгаалдаг томъёо',
-              '✓  100,000+ инээмсэглэл',
+              '✓  Перексгүй PAP+ томъёо',
               '✓  Өвдөлтгүй',
               '✓  30 хоногийн баталгаа',
             ].map(t => (
@@ -417,63 +407,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ─── BEFORE / AFTER ─── */}
-      <section className="relative z-10 py-24 border-t border-white/10">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8">
-          <div className="text-center mb-14">
-            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#B57EDC]">Үр дүн</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mt-3">
-              Өмнө & дараа.
-            </h2>
-            <p className="text-white/45 text-sm mt-3">Жинхэнэ хэрэглэгчдийн үр дүн. 7 хоногийн эмчилгээний дараа.</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {/* Before */}
-            <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/4 backdrop-blur-sm">
-              <div className="relative h-72 overflow-hidden">
-                <img
-                  src="/photos/before.png"
-                  alt="Эмчилгээний өмнө"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/15">
-                  <span className="text-white text-[11px] font-bold uppercase tracking-wider">Өмнө</span>
-                </div>
-              </div>
-              <div className="px-4 py-3 border-t border-white/10">
-                <p className="text-white font-bold text-sm">Эмчилгээний өмнө</p>
-                <p className="text-white/45 text-xs mt-0.5">Шаргалдсан, тунаргүй</p>
-              </div>
-            </div>
-
-            {/* After */}
-            <div className="rounded-2xl overflow-hidden border border-[#8A2BE2]/50 bg-white/4 backdrop-blur-sm shadow-[0_0_30px_rgba(138,43,226,.2)]">
-              <div className="relative h-72 overflow-hidden">
-                <img
-                  src="/photos/after.png"
-                  alt="Эмчилгээний дараа"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#8A2BE2]/80 backdrop-blur-sm border border-white/20">
-                  <span className="text-white text-[11px] font-bold uppercase tracking-wider">Дараа</span>
-                </div>
-                <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-[#5BD3B5]/80 backdrop-blur-sm">
-                  <span className="text-white text-[11px] font-bold">7 хоног</span>
-                </div>
-              </div>
-              <div className="px-4 py-3 border-t border-white/10">
-                <p className="text-white font-bold text-sm">Эмчилгээний дараа</p>
-                <p className="text-[#5BD3B5] text-xs mt-0.5 font-medium">3–5 шат цайрсан ✓</p>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-center text-white/30 text-xs mt-6">
-            * Үр дүн хэрэглэгчээс хамааран харилцан адилгүй байж болно.
-          </p>
-        </div>
-      </section>
+      {/* ─── BEFORE / AFTER ───
+          Бодит хэрэглэгчийн өмнө/дараа зураг гартал түр хаасан.
+          Анхны хэрэглэгчид (эгчээсээ эхэл) 7 хоног ашиглаад өөрсдийн өмнө/дараа зургаа авмагц
+          /public/photos/before.png ба after.png дотор БОДИТ зургийг тавиад энэ хэсгийг сэргээ.
+          Сток эсвэл хуурамч зургийг "жинхэнэ хэрэглэгчийн үр дүн" гэж бүү тавь —
+          итгэл алдагдах ба Meta зар хорьдог. */}
 
       {/* ─── HOW IT WORKS ─── */}
       <section id="how-it-works" className="relative z-10 py-24 border-t border-white/10">
@@ -512,43 +451,74 @@ export default function LandingPage() {
       {/* ─── REVIEWS ─── */}
       <section id="reviews" className="relative z-10 py-24 border-t border-white/10">
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
-          <div className="text-center mb-14">
-            <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#B57EDC]">
-              Жинхэнэ инээмсэглэл. Жинхэнэ үр дүн.
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mt-3 mb-3">376 үнэлгээ.</h2>
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-yellow-400">★★★★☆</span>
-              <span className="text-white/40 text-sm">4.2 / 5</span>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {reviews.map(r => (
-              <div
-                key={r.name}
-                className={`rounded-2xl p-6 flex flex-col gap-4 backdrop-blur-sm ${
-                  r.featured
-                    ? 'bg-white/10 border border-white/20 shadow-[0_0_30px_rgba(255,255,255,.04)]'
-                    : 'bg-white/5 border border-white/10'
-                }`}
-              >
-                <span className="text-yellow-400 text-sm">{r.stars}</span>
-                <p className="text-white/70 text-sm leading-relaxed flex-1">{r.text}</p>
-                <div className="flex items-center gap-3 pt-3 border-t border-white/10">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
-                    style={{ background: r.color }}
-                  >
-                    {r.initial}
-                  </div>
-                  <div>
-                    <p className="text-white text-[13px] font-semibold">{r.name}</p>
-                    <p className="text-white/35 text-xs">{r.kit}</p>
-                  </div>
-                </div>
+          {reviews.length > 0 ? (
+            <>
+              <div className="text-center mb-14">
+                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#B57EDC]">
+                  Хэрэглэгчдийн сэтгэгдэл
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-black text-white mt-3 mb-3">Жинхэнэ үр дүн.</h2>
               </div>
-            ))}
-          </div>
+              <div className="grid md:grid-cols-3 gap-5">
+                {reviews.map(r => (
+                  <div
+                    key={r.name}
+                    className={`rounded-2xl p-6 flex flex-col gap-4 backdrop-blur-sm ${
+                      r.featured
+                        ? 'bg-white/10 border border-white/20 shadow-[0_0_30px_rgba(255,255,255,.04)]'
+                        : 'bg-white/5 border border-white/10'
+                    }`}
+                  >
+                    <span className="text-yellow-400 text-sm">{r.stars}</span>
+                    <p className="text-white/70 text-sm leading-relaxed flex-1">{r.text}</p>
+                    <div className="flex items-center gap-3 pt-3 border-t border-white/10">
+                      <div
+                        className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+                        style={{ background: r.color }}
+                      >
+                        {r.initial}
+                      </div>
+                      <div>
+                        <p className="text-white text-[13px] font-semibold">{r.name}</p>
+                        <p className="text-white/35 text-xs">{r.kit}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="max-w-2xl mx-auto text-center">
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#B57EDC]">
+                Шинэ нээлт
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-white mt-3 mb-4">
+                Эхний хэрэглэгчдийн<br />нэг болоорой.
+              </h2>
+              <p className="text-white/55 text-sm leading-relaxed max-w-md mx-auto mb-10">
+                Purple Smile дөнгөж нээлтээ хийлээ. Тиймээс бүх эрсдэлийг бид өөрсдөө үүрнэ —
+                30 хоногийн дотор үр дүнд сэтгэл хангалуун бус бол мөнгийг чинь бүтнээр нь буцаана.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-4">
+                {[
+                  { t: '30 хоног', s: 'Мөнгө буцаах баталгаа' },
+                  { t: 'Перексгүй', s: 'PAP+ паалан хамгаалах томъёо' },
+                  { t: 'Өвдөлтгүй', s: 'Мэдрэмтгий шүдэнд ч тохирно' },
+                ].map(c => (
+                  <div key={c.t} className="rounded-2xl p-6 bg-white/5 border border-white/10 backdrop-blur-sm">
+                    <p className="text-white text-xl font-black mb-1">{c.t}</p>
+                    <p className="text-white/45 text-xs">{c.s}</p>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="#products"
+                className="inline-flex mt-10 px-10 py-3.5 rounded-xl bg-[#8A2BE2] text-white font-bold text-sm hover:bg-[#7320cc] transition-all hover:-translate-y-0.5 shadow-[0_6px_28px_rgba(138,43,226,.45)]"
+              >
+                Багц сонгох
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
