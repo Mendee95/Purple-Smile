@@ -324,6 +324,8 @@ export default function CheckoutModal({ initialPackageId, onClose }: CheckoutMod
                       <a
                         key={url.name}
                         href={url.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex flex-col items-center gap-1 rounded-xl border border-white/10 bg-white/5 p-2 hover:bg-white/10 transition-colors"
                       >
                         {url.logo ? (
