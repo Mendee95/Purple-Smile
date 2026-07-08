@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { track } from '../lib/fpixel';
 
 interface Package {
   id: string;
@@ -89,6 +90,13 @@ export default function CheckoutModal({ initialPackageId, onClose }: CheckoutMod
       setTimer(900);
       setStep('payment');
 
+      // Meta Pixel: buyer reached the QPay payment step
+      track('InitiateCheckout', {
+        value: selectedPkg.amount,
+        currency: 'MNT',
+        content_name: selectedPkg.name,
+      });
+
       timerRef.current = setInterval(() => {
         setTimer(t => {
           if (t <= 1) { stopAll(); return 0; }
@@ -106,6 +114,13 @@ export default function CheckoutModal({ initialPackageId, onClose }: CheckoutMod
           const checkData = await checkRes.json();
           if (checkData.paid) {
             stopAll();
+            // Meta Pixel: QPay confirmed payment — this is the conversion
+            track('Purchase', {
+              value: selectedPkg.amount,
+              currency: 'MNT',
+              content_name: selectedPkg.name,
+              content_type: 'product',
+            });
             // Log order to Google Sheets
             fetch('/api/order', {
               method: 'POST',
