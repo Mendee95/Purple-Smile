@@ -125,7 +125,7 @@ export default function CheckoutModal({ initialPackageId, onClose }: CheckoutMod
             fetch('/api/order', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ ...orderInfo, product: selectedPkg.name, price: selectedPkg.price }),
+              body: JSON.stringify({ ...orderInfo, product: selectedPkg.name, price: selectedPkg.price, invoice_id: data.invoice_id }),
             }).catch(() => {});
             setStep('success');
           }

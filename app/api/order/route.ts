@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkPayment } from '@/lib/qpay';
 
 export async function POST(req: NextRequest) {
   const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
@@ -7,6 +8,19 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
+
+  if (!body.invoice_id) {
+    return NextResponse.json({ error: 'Missing invoice_id' }, { status: 400 });
+  }
+
+  const result = await checkPayment(body.invoice_id);
+  const paid =
+    result.count > 0 &&
+    result.rows.some(r => r.payment_status === 'PAID' || r.payment_status === 'SUCCESS');
+
+  if (!paid) {
+    return NextResponse.json({ error: 'Invoice not paid' }, { status: 402 });
+  }
 
   const params = new URLSearchParams({
     name: body.name ?? '',
